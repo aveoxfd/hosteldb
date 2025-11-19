@@ -60,11 +60,15 @@ public class Main {
     }
     private static void listRedactor(){
         JPanel listRedactorPanel = new JPanel();
+        JTextField hostelNameField = new JTextField();
         listRedactorPanel.setBounds(0,0,400,400);
         listRedactorPanel.setLayout(null);
         listRedactorPanel.setVisible(true);
-        taskManager.addTask(listRedactorPanel);
 
-
+        hostelNameField.setSize(200,30);
+        hostelNameField.setLocation(100,50);
+        hostelNameField.setText("Hostel Name");
+        //TODO
+        listRedactorPanel.add(hostelNameField);
     }
 }
