@@ -8,8 +8,10 @@ public class Main {
         "View full DB"
     };
 
-    static JFrame frame = new JFrame("Hostelbd");
-    static Task taskManager = new Task(frame, 10);
+    private static int width = 500;
+    private static int height = 500;
+    private static JFrame frame = new JFrame("Hotelbd");
+    private static Task taskManager = new Task(frame, 10);
     
 
     public static void main(String args[]){ //main menu
@@ -17,18 +19,16 @@ public class Main {
     }
     private static void mainMenu(){
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400,400);
+        frame.setSize(width,height);
         frame.setVisible(true);
         frame.setLayout(null);
 
         JPanel mainMenu = new JPanel();
-        mainMenu.setBounds(0,0,400,400);
+        mainMenu.setBounds(0,0,width,height);
         mainMenu.setLayout(null);
         mainMenu.setVisible(true);
         taskManager.addTask(mainMenu);
         frame.add(taskManager.getTask());
-
-
 
         int step = 0;
         for (String mainMenuButtonNames : mainButtonsNames){
@@ -72,10 +72,12 @@ public class Main {
             "<-",
             "Done"
         };
+        Person PersonTempBuff[] = new Person[10];
+        final int[] PersonTempBuffPtr = {0};
 
         JPanel listRedactorPanel = new JPanel();
         taskManager.addTask(listRedactorPanel);
-        taskManager.getTask().setBounds(0,0,400, 400);
+        taskManager.getTask().setBounds(0,0,width, height);
         taskManager.getTask().setLayout(null);
         taskManager.getTask().setVisible(true);
 
@@ -88,7 +90,7 @@ public class Main {
             }
             else if (listRedactorButtonsParser == "Done"){
                 button.setSize(200, 10);
-                button.setLocation(100, 350);
+                button.setLocation(width/2 - 100, height-50);
             }
             else{
                 button.setSize(200,50);
@@ -113,11 +115,137 @@ public class Main {
             step++;
             taskManager.getTask().add(button);
         }
-        JTextField hostelNameField = new JTextField("Test");
-        hostelNameField.setSize(200,30);
-        hostelNameField.setLocation(100,50);
-        //TODO
+
+        int yPosition = 10;
+        int jump = 25;
+
+        JTextField idField = new JTextField();
+        idField.setBounds(150, yPosition, 200, 25);
+        JLabel idLabel = new JLabel("ID:");
+        idLabel.setBounds(50, yPosition, 100, 25);
+        taskManager.getTask().add(idLabel);
+        taskManager.getTask().add(idField);
+        yPosition += jump;
+        
+        JTextField hostelNameField = new JTextField();
+        hostelNameField.setBounds(150, yPosition, 200, 25);
+        JLabel hostelNameLabel = new JLabel("Hotel Name:");
+        hostelNameLabel.setBounds(50, yPosition, 100, 25);
+        taskManager.getTask().add(hostelNameLabel);
         taskManager.getTask().add(hostelNameField);
+        yPosition += jump;
+
+        JTextField cityNameField = new JTextField();
+        cityNameField.setBounds(150, yPosition, 200, 25);
+        JLabel cityNameLabel = new JLabel("City:");
+        cityNameLabel.setBounds(50, yPosition, 100, 25);
+        taskManager.getTask().add(cityNameLabel);
+        taskManager.getTask().add(cityNameField);
+        yPosition += jump;
+
+        JTextField streetNameField = new JTextField();
+        streetNameField.setBounds(150, yPosition, 200, 25);
+        JLabel streetNameLabel = new JLabel("St. name:");
+        streetNameLabel.setBounds(50, yPosition, 100, 25);
+        taskManager.getTask().add(streetNameLabel);
+        taskManager.getTask().add(streetNameField);
+        yPosition += jump;
+
+        JTextField streetNumberField = new JTextField();
+        streetNumberField.setBounds(150, yPosition, 200, 25);
+        JLabel streetNumberLabel = new JLabel("St. number:");
+        streetNumberLabel.setBounds(50, yPosition, 100, 25);
+        taskManager.getTask().add(streetNumberLabel);
+        taskManager.getTask().add(streetNumberField);
+        yPosition += jump;
+
+        JTextField houseNumberField = new JTextField();
+        houseNumberField.setBounds(150, yPosition, 200, 25);
+        JLabel houseNumberLabel = new JLabel("House number:");
+        houseNumberLabel.setBounds(50, yPosition, 100, 25);
+        taskManager.getTask().add(houseNumberLabel);
+        taskManager.getTask().add(houseNumberField);
+        yPosition += jump;
+
+        JTextField doorNumberField = new JTextField();
+        doorNumberField.setBounds(150, yPosition, 200, 25);
+        JLabel doorNumberLabel = new JLabel("Door number:");
+        doorNumberLabel.setBounds(50, yPosition, 100, 25);
+        taskManager.getTask().add(doorNumberLabel);
+        taskManager.getTask().add(doorNumberField);
+        yPosition += jump;
+
+        JTextField PersonFNameField = new JTextField();
+        PersonFNameField.setBounds(150, yPosition, 200, 25);
+        JLabel PersonFNameLabel = new JLabel("Person 1th Name:");
+        PersonFNameLabel.setBounds(50, yPosition, 100, 25);
+        taskManager.getTask().add(PersonFNameLabel);
+        taskManager.getTask().add(PersonFNameField);
+        yPosition += jump;
+
+        JTextField PersonSNameField = new JTextField();
+        PersonSNameField.setBounds(150, yPosition, 200, 25);
+        JLabel PersonSNameLabel = new JLabel("Person 2th Name:");
+        PersonSNameLabel.setBounds(50, yPosition, 100, 25);
+        taskManager.getTask().add(PersonSNameLabel);
+        taskManager.getTask().add(PersonSNameField);
+        yPosition += jump;
+
+        JTextField PersonMNameField = new JTextField();
+        PersonMNameField.setBounds(150, yPosition, 200, 25);
+        JLabel PersonMNameLabel = new JLabel("Person mid Name:");
+        PersonMNameLabel.setBounds(50, yPosition, 100, 25);
+        taskManager.getTask().add(PersonMNameLabel);
+        taskManager.getTask().add(PersonMNameField);
+        yPosition += jump;
+
+        JTextField PersonPhoneNumberField = new JTextField();
+        PersonPhoneNumberField.setBounds(150, yPosition, 200, 25);
+        JLabel PersonPhoneNumberLabel = new JLabel("Person ph number:");
+        PersonPhoneNumberLabel.setBounds(50, yPosition, 100, 25);
+        taskManager.getTask().add(PersonPhoneNumberLabel);
+        taskManager.getTask().add(PersonPhoneNumberField);
+        yPosition += jump;
+
+        JTextField PersonPostField = new JTextField();
+        PersonPostField.setBounds(150, yPosition, 200, 25);
+        JLabel PersonPostLabel = new JLabel("Person post:");
+        PersonPostLabel.setBounds(50, yPosition, 100, 25);
+        taskManager.getTask().add(PersonPostLabel);
+        taskManager.getTask().add(PersonPostField);
+        yPosition += jump;
+
+        JButton addPersonToArray = new JButton("Add person");
+        addPersonToArray.setSize(70, 20);
+        addPersonToArray.setLocation(width/2-70/2, yPosition);
+        addPersonToArray.addActionListener(e->{
+            PersonTempBuff[PersonTempBuffPtr[0]] = new Person();
+            PersonTempBuff[PersonTempBuffPtr[0]].firstName = PersonFNameField.getText();
+            PersonTempBuff[PersonTempBuffPtr[0]].secondName = PersonSNameField.getText();
+            PersonTempBuff[PersonTempBuffPtr[0]].middleName = PersonMNameField.getText();
+            PersonTempBuff[PersonTempBuffPtr[0]].phoneNumber = PersonPhoneNumberField.getText();
+            PersonTempBuff[PersonTempBuffPtr[0]].post = PersonPostField.getText();
+
+            System.out.println(PersonTempBuff[PersonTempBuffPtr[0]].firstName +
+                "\n"+PersonTempBuff[PersonTempBuffPtr[0]].secondName+
+                "\n"+PersonTempBuff[PersonTempBuffPtr[0]].middleName+
+                "\n"+PersonTempBuff[PersonTempBuffPtr[0]].phoneNumber+
+                "\n"+PersonTempBuff[PersonTempBuffPtr[0]].post
+            );
+
+
+            PersonFNameField.setText("");
+            PersonSNameField.setText("");
+            PersonMNameField.setText("");
+            PersonPhoneNumberField.setText("");
+            PersonPostField.setText("");
+
+            PersonTempBuffPtr[0]++;
+        });
+        yPosition+=jump;
+
+        taskManager.getTask().add(addPersonToArray);
+        
         frame.add(taskManager.getTask());
     }
 }
