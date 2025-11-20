@@ -12,6 +12,7 @@ public class Main {
     private static int height = 500;
     private static JFrame frame = new JFrame("Hotelbd");
     private static Task taskManager = new Task(frame, 10);
+    private static HotelList HotelPack;
     
 
     public static void main(String args[]){ //main menu
@@ -70,7 +71,8 @@ public class Main {
     private static void listRedactor(){
         String listRedactorButtons[] = {
             "<-",
-            "Done"
+            "Done",
+            "View field"
         };
         Person PersonTempBuff[] = new Person[10];
         final int[] PersonTempBuffPtr = {0};
@@ -92,13 +94,17 @@ public class Main {
                 button.setSize(200, 10);
                 button.setLocation(width/2 - 100, height-50);
             }
+            else if (listRedactorButtonsParser == "View field"){
+                button.setSize(60, 10);
+                button.setLocation(width - 100, height-50);
+            }
             else{
                 button.setSize(200,50);
                 button.setLocation(100, 50+step*50);
             }
             if(listRedactorButtonsParser == "Done"){
                 button.addActionListener(e -> {
-                    System.out.println("Done");
+                    
 
                     taskManager.getTask().setVisible(false);
                     taskManager.removeTask();
@@ -110,6 +116,11 @@ public class Main {
                     taskManager.getTask().setVisible(false);
                     taskManager.removeTask();
                     mainMenu();
+                });
+            }
+            if (listRedactorButtonsParser == "View field"){
+                button.addActionListener(e ->{
+
                 });
             }
             step++;
@@ -219,20 +230,25 @@ public class Main {
         addPersonToArray.setSize(70, 20);
         addPersonToArray.setLocation(width/2-70/2, yPosition);
         addPersonToArray.addActionListener(e->{
-            PersonTempBuff[PersonTempBuffPtr[0]] = new Person();
-            PersonTempBuff[PersonTempBuffPtr[0]].firstName = PersonFNameField.getText();
-            PersonTempBuff[PersonTempBuffPtr[0]].secondName = PersonSNameField.getText();
-            PersonTempBuff[PersonTempBuffPtr[0]].middleName = PersonMNameField.getText();
-            PersonTempBuff[PersonTempBuffPtr[0]].phoneNumber = PersonPhoneNumberField.getText();
-            PersonTempBuff[PersonTempBuffPtr[0]].post = PersonPostField.getText();
 
-            System.out.println(PersonTempBuff[PersonTempBuffPtr[0]].firstName +
-                "\n"+PersonTempBuff[PersonTempBuffPtr[0]].secondName+
-                "\n"+PersonTempBuff[PersonTempBuffPtr[0]].middleName+
-                "\n"+PersonTempBuff[PersonTempBuffPtr[0]].phoneNumber+
-                "\n"+PersonTempBuff[PersonTempBuffPtr[0]].post
+            PersonTempBuff[PersonTempBuffPtr[0]%10] = new Person();
+
+            PersonTempBuff[PersonTempBuffPtr[0]%10].firstName = PersonFNameField.getText().trim().isEmpty() ? "null" : PersonFNameField.getText().trim();
+            PersonTempBuff[PersonTempBuffPtr[0]%10].secondName = PersonSNameField.getText().trim().isEmpty() ? "null" : PersonSNameField.getText().trim();
+            PersonTempBuff[PersonTempBuffPtr[0]%10].middleName = PersonMNameField.getText().trim().isEmpty() ? "null" : PersonMNameField.getText().trim();
+            PersonTempBuff[PersonTempBuffPtr[0]%10].phoneNumber = PersonPhoneNumberField.getText().trim().isEmpty() ? "null" : PersonPhoneNumberField.getText().trim();
+            PersonTempBuff[PersonTempBuffPtr[0]%10].post = PersonPostField.getText().trim().isEmpty() ? "null" : PersonPostField.getText().trim();
+            
+            System.out.println(
+                     PersonTempBuff[PersonTempBuffPtr[0]%10].firstName +
+                "\n"+PersonTempBuff[PersonTempBuffPtr[0]%10].secondName+
+                "\n"+PersonTempBuff[PersonTempBuffPtr[0]%10].middleName+
+                "\n"+PersonTempBuff[PersonTempBuffPtr[0]%10].phoneNumber+
+                "\n"+PersonTempBuff[PersonTempBuffPtr[0]%10].post
             );
 
+            HotelPack = new HotelList();
+            
 
             PersonFNameField.setText("");
             PersonSNameField.setText("");
